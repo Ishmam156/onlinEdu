@@ -1,0 +1,36 @@
+{% extends 'onlinedu/layout.html' %}
+
+{% block title %}
+    OnlinEdu - Login
+{% endblock %}
+
+{% block body %}
+    
+<div class="container">
+
+    <br>
+
+    <h2>Login</h2>
+
+        {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <div class="form-group">
+                <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Login">
+        </form>
+        <br>
+
+        <small>Don't have an account? <a href="{% url 'register' %}">Register here.</a></small>
+
+</div>
+
+{% endblock %}
