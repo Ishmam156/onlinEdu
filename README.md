@@ -2,6 +2,12 @@
 
 *This project is a web application that behaves similar to **EdX** - an online education platform with instructors and users. Students can join courses, start discussions as well as add comments to existing discussions and at the end of the course, get an auto generated certificate with their name and course title.*
 
+## Notes if you want to run this locally or deploy
+* Change the secret key and your GMail credentials in project folder's settings.py
+* The font you want to use for the certificate needs to be installed in your system if you want to use it locally.
+* The font needs to be in the base directory of the project during deployment
+
+
 ## Features of the project are as follow:
 * 2 form of users - Instructors and Students
 * Instructors upon registration are not active by default. The admin will review the reference video provided by the teacher and then set their status to active. Upon active status, the instructor will receive an email confirming their status handled through django.
