@@ -1,0 +1,37 @@
+{% extends 'onlinedu/layout.html' %}
+
+{% block title %}
+    OnlinEdu - Register
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <br>
+
+        <h2>Join us!</h2>
+        
+        <br>
+
+        <div class="card-deck">
+            <div class="card mb-3" style="min-width: 18rem; max-width: 40rem;">
+                <img class="card-img-top" src="https://img.freepik.com/free-vector/flat-people-going-university-collection_23-2148190293.jpg?size=626&ext=jpg">
+                <div class="card-body">
+                    <h5 class="card-title">Become a Student!</h5>
+                    <p class="card-text">Join our large online teaching place and help spread your knowledge across the world!</p>
+                    <a href="{% url 'register_choice' choice='student' %}"><button type="button" class="btn btn-primary">Register!</button></a>
+                </div>
+            </div>
+            <div class="card mb-3" style="min-width: 18rem; max-width: 40rem;">
+                <img class="card-img-top" src="https://images.vexels.com/media/users/3/144625/preview2/61722030e99d83dbcc215a0633b6bf21-college-teacher-illustration-with-alumns.jpg">
+                <div class="card-body">
+                    <h5 class="card-title">Become a Teacher!</h5>
+                    <p class="card-text">Join our large online teaching place and help spread your knowledge across the world!</p>
+                    <a href="{% url 'register_choice' choice='teacher' %}"><button type="button" class="btn btn-primary">Register!</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

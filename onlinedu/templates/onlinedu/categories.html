@@ -1,0 +1,66 @@
+{% extends 'onlinedu/layout.html' %}
+
+{% block title %}
+    
+    OnlinEdu - {{ category_title | default:"All Courses" }}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <br>
+
+        {% if category_title %}
+            <h3><strong>All courses under {{ category_title }}:</strong></h3>
+        {% else %}
+            <h3><strong>All courses:</strong></h3>
+        {% endif %}            
+
+        {% if courses %}
+            <small><i>Total courses: <strong>{{ courses.count }}</strong></i></small>
+            <br>
+            <br>
+            
+            <div class="card-deck">
+                {% for course in courses %}
+                    <div class="card mb-3" style="min-width: 18rem; max-width: 40rem;">
+                        <img class="card-img-top img-fluid" src="{{ course.thumbnail }}" alt="Thumbnail for Course: {{ course.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.title }}</h5>
+                            <small class="text-muted">Taught by: <a href="{% url 'instructor' course.instructor.username %}"><strong>{{ course.instructor.get_full_name }}</a></strong></small>
+                            <br>
+                            <br>
+                            <p class="card-text">{{ course.description }}</p>
+                            {% if user.is_authenticated %}
+                                {% if course in user.courses.all %}
+                                    <a href="{% url 'course_view' course.id %}"><input type="button" value="Continue Course" class="btn btn-success"></a>
+                                {% if user in course.raters.all %}
+                                    <button type="button" class="btn btn-secondary">Completed</button>
+                                {% endif %}
+                                {% else %}
+                                {% if course.instructor == user %}
+                                    <a href="{% url 'course_view' course.id %}"><input type="button" value="Continue Course" class="btn btn-success"></a>
+                                {% else %}    
+                                    <a href="{% url 'course' course.id %}"><input type="button" value="Learn More" class="btn btn-primary"></a>
+                                {% endif %}
+
+                                {% endif %}
+                            {% else %}
+                                <a href="{% url 'course' course.id %}"><input type="button" value="Learn More" class="btn btn-primary"></a>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Rating: <strong>{{ course.rating }}</strong></small>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        There are currently no courses in this category
+        {% endif %}
+
+    </div>
+
+{% endblock %}

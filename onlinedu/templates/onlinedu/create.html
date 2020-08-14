@@ -1,0 +1,47 @@
+{% extends 'onlinedu/layout.html' %}
+
+{% block title %}
+    OnlinEdu - Create Course
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    
+        <br>
+
+        <h2>Create your course:</h2>
+        
+        <br>
+
+        {% if message %}
+            <div>{{ message }}</div>
+            <br>
+        {% endif %}
+
+        <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" autofocus type="text" name="title" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="course-choices"><i>Course Category:</i></label>
+                {{ form }}
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="url" name="thumbnail" placeholder="Course Thumbnail" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="url" name="video" placeholder="YouTube Video" required>
+            </div>
+            <small><i>* All fields are mandatory</i></small>
+            <br>    
+            <input class="btn btn-primary" type="submit" value="Create">
+        </form>
+
+    </div>
+
+{% endblock %}
