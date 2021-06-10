@@ -1,4 +1,4 @@
-Django==3.0.7
+Django==3.1.12
 django-heroku==0.3.1
 django-multiselectfield==0.1.12
 Pillow==7.2.0
